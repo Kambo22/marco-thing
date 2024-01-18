@@ -1,0 +1,45 @@
+<html lang="en-GB">
+	<head>	
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-type" content="text/html;charset=UTF-8">	
+		<script type="module" src="jsrunmarco.js"></script>
+	</head>
+	<body>
+		<script type="module">
+			import { step, jump, look, turn, done, showSolution, setupAsStage, autoPlay } from "./jsrunmarco.js";
+			import(`./${location.search.substr(1)||'jsrunmarco'}.js`).then(()=>{;
+				console.log('ready?');
+				console.log('type help() to see the list of valid functions')
+				Object.assign(window,{
+					step(){
+						return step();
+					},
+					jump(){
+						return jump();
+					},
+					look(direction){
+						return look(direction);
+					},
+					turn(direction){
+						return turn(direction);
+					},
+					done(){
+						return done();
+					},
+					showSolution(){
+						return autoPlay();
+					},
+					setupAsStage,
+					help(){
+						console.log('function step(){...}', 'One step forward');
+						console.log('function jump(){...}', 'Jump the obstacle ahead');
+						console.log('function look(direction){...}', 'Looks in the specified direction and returns the type of object ahead(wall, bush, clear, self, out). Direction can be "front","back","left","right"');
+						console.log('function turn(direction){...}', 'Turn to the specified direction. Direction can be "back","left","right"');
+						console.log('function done(){...}', 'Returns true if we reached the end of the stage');
+						console.log('function showSolution(){...}', 'Show the solution.');
+						console.log('function setupAsStage(name,stageFn){...}', 'Setup a new stage with the given name, as described by the steps taken in the function stageFn.');
+				}});
+			});
+		</script>
+	</body>
+</html>
